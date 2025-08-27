@@ -1,3 +1,12 @@
+local message = "more script keyless here https://discord.gg/gcwe7gae"
+setclipboard(message)
+game.StarterGui:SetCore("SendNotification", {
+Title = "Clipboard";
+Text = "more scripts keyless here!";
+Duration = 5;
+})
+
+
 local _1ab2cd3e = game:GetService("Players")
 local _f4g5h6i = game:GetService("RunService")
 local _j7k8l9m = _1ab2cd3e.LocalPlayer
