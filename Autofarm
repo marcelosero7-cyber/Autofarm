@@ -1,0 +1,91 @@
+local _1ab2cd3e = game:GetService("Players")
+local _f4g5h6i = game:GetService("RunService")
+local _j7k8l9m = _1ab2cd3e.LocalPlayer
+local _n0p1q2r = _j7k8l9m.Character or _j7k8l9m.CharacterAdded:Wait()
+local _s3t4u5v = _n0p1q2r:WaitForChild("HumanoidRootPart")
+local _w6x7y8z = _n0p1q2r:WaitForChild("Humanoid")
+local _a1b2c3d = Instance.new("ScreenGui", game.CoreGui)
+local _e4f5g6h = Instance.new("Frame", _a1b2c3d)
+_e4f5g6h.Size = UDim2.new(0, 250, 0, 120)
+_e4f5g6h.Position = UDim2.new(0.5, -125, 0.5, -60)
+_e4f5g6h.BackgroundColor3 = Color3.fromRGB(25, 0, 40)
+_e4f5g6h.BorderSizePixel = 0
+local _i7j8k9l = Instance.new("UICorner", _e4f5g6h)
+_i7j8k9l.CornerRadius = UDim.new(0, 12)
+local _m0n1o2p = Instance.new("TextLabel", _e4f5g6h)
+_m0n1o2p.Size = UDim2.new(1, 0, 0, 35)
+_m0n1o2p.BackgroundTransparency = 1
+_m0n1o2p.TextScaled = true
+_m0n1o2p.Font = Enum.Font.GothamBold
+_m0n1o2p.TextColor3 = Color3.fromRGB(255, 0, 255)
+_m0n1o2p.Text = string.char(65, 108, 103, 111, 108)
+local _q3r4s5t = Instance.new("TextLabel", _e4f5g6h)
+_q3r4s5t.Size = UDim2.new(1, 0, 0, 35)
+_q3r4s5t.Position = UDim2.new(0, 0, 0, 0)
+_q3r4s5t.BackgroundTransparency = 1
+_q3r4s5t.TextScaled = true
+_q3r4s5t.Font = Enum.Font.GothamBold
+_q3r4s5t.TextColor3 = Color3.fromRGB(0, 255, 255)
+_q3r4s5t.Text = string.char(65, 108, 103, 111, 108)
+local _u6v7w8x = Instance.new("TextButton", _e4f5g6h)
+_u6v7w8x.Size = UDim2.new(0, 180, 0, 40)
+_u6v7w8x.Position = UDim2.new(0.5, -90, 0.6, 0)
+_u6v7w8x.BackgroundColor3 = Color3.fromRGB(90, 0, 150)
+_u6v7w8x.TextColor3 = Color3.fromRGB(255, 255, 255)
+_u6v7w8x.Text = string.char(65, 117, 116, 111, 70, 97, 114, 109, 58, 32, 79, 70, 70)
+local _y9z0a1b = Instance.new("UICorner", _u6v7w8x)
+_y9z0a1b.CornerRadius = UDim.new(0, 8)
+local _c2d3e4f
+local _g5h6i7j
+local _k8l9m0n
+local _o1p2q3r
+_e4f5g6h.InputBegan:Connect(function(_s3t4u5v2)
+    if _s3t4u5v2.UserInputType == Enum.UserInputType.Touch or _s3t4u5v2.UserInputType == Enum.UserInputType.MouseButton1 then
+        _c2d3e4f = true
+        _k8l9m0n = _s3t4u5v2.Position
+        _o1p2q3r = _e4f5g6h.Position
+        _s3t4u5v2.Changed:Connect(function()
+            if _s3t4u5v2.UserInputState == Enum.UserInputState.End then
+                _c2d3e4f = false
+            end
+        end)
+    end
+end)
+_e4f5g6h.InputChanged:Connect(function(_t6u7v8w)
+    if _t6u7v8w.UserInputType == Enum.UserInputType.MouseMovement or _t6u7v8w.UserInputType == Enum.UserInputType.Touch then
+        _g5h6i7j = _t6u7v8w
+    end
+end)
+_f4g5h6i.RenderStepped:Connect(function()
+    if _c2d3e4f and _g5h6i7j then
+        local _u9v0w1x = _g5h6i7j.Position - _k8l9m0n
+        _e4f5g6h.Position = UDim2.new(_o1p2q3r.X.Scale, _o1p2q3r.X.Offset + _u9v0w1x.X, _o1p2q3r.Y.Scale, _o1p2q3r.Y.Offset + _u9v0w1x.Y)
+    end
+end)
+local _v2w3x4y = false
+_u6v7w8x.MouseButton1Click:Connect(function()
+    _v2w3x4y = not _v2w3x4y
+    if _v2w3x4y then
+        _u6v7w8x.Text = string.char(65, 117, 116, 111, 70, 97, 114, 109, 58, 32, 79, 78)
+        _u6v7w8x.BackgroundColor3 = Color3.fromRGB(120, 0, 180)
+    else
+        _u6v7w8x.Text = string.char(65, 117, 116, 111, 70, 97, 114, 109, 58, 32, 79, 70, 70)
+        _u6v7w8x.BackgroundColor3 = Color3.fromRGB(90, 0, 150)
+    end
+end)
+local _z5a6b7c = Vector3.new(267.8, 99.2, 150.7)
+task.spawn(function()
+    while true do
+        if _v2w3x4y then
+            if _s3t4u5v then
+                _s3t4u5v.CFrame = CFrame.new(_z5a6b7c)
+                if _w6x7y8z and _w6x7y8z.FloorMaterial ~= Enum.Material.Air then
+                    _w6x7y8z:ChangeState(Enum.HumanoidStateType.Jumping)
+                end
+            end
+        end
+        task.wait(0.3)
+        local a,b,c = 123,456,789
+        local d = a+b*c-a
+    end
+end)
